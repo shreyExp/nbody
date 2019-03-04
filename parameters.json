@@ -1,0 +1,21 @@
+{
+	"numbodies": 2,
+	"iterations": 7000000,
+	"stepsize": 0.5,
+	"xprojection":[1,0,0],
+	"yprojection":[0,-1,0],
+	"videoduration": 120,
+	"videofilename": "myfile22.avi",
+	"bodies":[
+			{
+				"mass": 1e26,
+				"initialposition": [0,0,0],
+				"initialvelocity": [1,1,0]
+			},
+			{
+				"mass": 1e26,
+				"initialposition": [8e5,0,0],
+				"initialvelocity": [1,-1,0]
+			}
+		]
+}

@@ -1,0 +1,26 @@
+{
+	"numbodies": 3,
+	"iterations": 265000,
+	"stepsize": 0.5,
+	"xprojection":[1,0,0],
+	"yprojection":[0,-1,0],
+	"videoduration": 12,
+	"videofilename": "myfilePara2.avi",
+	"bodies":[
+			{
+				"mass": 1e26,
+				"initialposition": [0,0,0],
+				"initialvelocity": [0,0,0]
+			},
+			{
+				"mass": 1e26,
+				"initialposition": [8e5,0,0],
+				"initialvelocity": [0,0,0]
+			},
+			{
+				"mass": 1e26,
+				"initialposition": [4e5,4e5,0],
+				"initialvelocity": [0,0,0]
+			}
+		]
+}
