@@ -2,6 +2,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <string>
+#include "ProgressBar.hpp"
 using namespace std;
 using namespace cv;
 void makeCircle(cv::Mat &m);
@@ -59,6 +60,8 @@ void videoGen(double **x, double** y, int nbodies, int iter, int duration, strin
 	shiftx = (imgDimension - (xmax - xmin) * xscale)/2;
 	shifty = (imgDimension - (ymax - ymin) * yscale)/2;
 
+	cout<<"\n\nWriting the output..."<<endl;
+	ProgressBar progressBar(iter/stepSize, 70, '=', '-');
 	for(int i = 0; i < iter; i = i + stepSize){
 		for(int j = 0; j < nbodies; j = j + 1){
 			k = x[j][i] * xscale + shiftx;		
@@ -68,7 +71,12 @@ void videoGen(double **x, double** y, int nbodies, int iter, int duration, strin
 		}
 		vid<<im;
 		im = Scalar(100);
+		++progressBar;
+		if(i % 10 == 0)
+			progressBar.display();
 	}
+	cout<<"\nOutput written!\nProgram finished"<<endl;
+	progressBar.done();
 }
 void minmax(double *x, double &m, double &ma, int iter){
 	double min, max;
