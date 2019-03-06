@@ -1,12 +1,5 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <iostream>
-#include <string>
-#include "ProgressBar.hpp"
 #include "videogen.h"
-using namespace std;
-using namespace cv;
-void videoGen(double **x, double** y, int nbodies, int iter, int duration, string filename){
+void videoGen(double **x, double** y, int nbodies, int iter, int duration, std::string filename){
 
 	int imgDimension = 1000;
 	Size S(imgDimension, imgDimension);

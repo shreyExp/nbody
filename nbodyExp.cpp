@@ -2,7 +2,7 @@
 #include "math.h"
 #include <armadillo>
 #include <string>
-#include "getiniExp.h"
+#include "getini.h"
 #include <sstream>
 #include "videogen.h"
 #include "ProgressBar.hpp"

@@ -1,5 +1,6 @@
 maketutorial.html
 nbody23
+nbody
 test.avi
 test2.avi
 xxx
@@ -7,4 +8,4 @@ yyy
 /sim*
 zzz
 zzz2
-
+*.o
