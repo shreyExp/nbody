@@ -2,9 +2,10 @@
 #include "math.h"
 #include <armadillo>
 #include <string>
-#include "getiniExp.h"
+#include "getini.h"
 #include <sstream>
 #include "videogen.h"
+#include "ProgressBar.hpp"
 using namespace arma; //To  use anmadillo objects
 using namespace std;
 inline Col<double> acc(Col<double> , Col<double> , double );
@@ -39,6 +40,9 @@ int main(int argc, char** argv){
 		x[l] = new double[iter];
 	}
 
+	ProgressBar progressBar(iter, 70, '#', '-');
+
+	cout<<"Iterating....."<<endl;
 	for(int k = 0; k < iter; k++){
 		for(int j = 0; j < nbodies; j++){//This can be parallelized
 			a[j]<<0<<0<<0; //To stop accumulation : a should be new for new calculation
@@ -53,12 +57,15 @@ int main(int argc, char** argv){
 			x[j][k] = dot(R[j], xa);
 			y[j][k] = dot(R[j], ya);
 		}
+		++progressBar;
+		if(k % 10 == 0)
+			progressBar.display();
 	}
+	cout<<"Iterating Complete.";
 	string fileName = ini.getVideoFileName();
 	int duration = ini.getVideoDuration();
 	videoGen(x, y, nbodies, iter, duration, fileName);
 //	displayer(x[0], y[0], x[1], y[1], iter, duration, fileName);
-	cout<<" nbodies "<<nbodies<<endl;
 }
 inline Col<double> acc(Col<double> R1, Col<double> R2, double m){
 	double G = 6.67408e-20;
