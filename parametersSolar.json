@@ -1,0 +1,29 @@
+{
+	"numbodies": 3,
+//	"iterations": 78840000,
+//	"iterations": 1840000,
+//	"iterations": 1840000,
+	"iterations": 46656000,
+	"stepsize": 0.05,
+	"xprojection":[1,0,0],
+	"yprojection":[0,1,0],
+	"videoduration": 20,
+	"videofilename": "myfileSolarExp2.avi",
+	"bodies":[
+			{
+				"mass": 1.989e30,
+				"initialposition": [0,0,0],
+				"initialvelocity": [0,0,0]
+			},
+			{
+				"mass": 5.972e24,
+				"initialposition": [1.496e8,0,0],
+				"initialvelocity": [0,30,0]
+			},
+			{
+				"mass": 7.347e22,
+				"initialposition": [1.499844e8,0,0],
+				"initialvelocity": [0,31,0]
+			}
+		]
+}
