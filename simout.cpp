@@ -1,5 +1,5 @@
-#include "videogen.h"
-void videoGen(double **x, double** y, int nbodies, int iter, int duration, std::string filename){
+#include "simout.h"
+void Simout::videoGen(){
 
 	int imgDimension = 1000;
 	Size S(imgDimension, imgDimension);
@@ -67,7 +67,7 @@ void videoGen(double **x, double** y, int nbodies, int iter, int duration, std::
 	cout<<"\nOutput written!\nProgram finished"<<endl;
 	progressBar.done();
 }
-void minmax(double *x, double &m, double &ma, int iter){
+void Simout::minmax(double *x, double &m, double &ma, int iter){
 	double min, max;
 	min = x[0];
 	max = x[0];
@@ -83,7 +83,7 @@ void minmax(double *x, double &m, double &ma, int iter){
 //	cout<<"Maximum is "<<max<<endl;
 }
 
-void minmax2d(double **x, int nbodies, int iter, double &m, double &ma){
+void Simout::minmax2d(double **x, int nbodies, int iter, double &m, double &ma){
 	double min, max;
 	min = x[0][0];
 	max = x[0][0];
@@ -100,7 +100,7 @@ void minmax2d(double **x, int nbodies, int iter, double &m, double &ma){
 //	cout<<"Minimum is "<<min<<endl;
 //	cout<<"Maximum is "<<max<<endl;
 }
-void makeCircle(cv::Mat &m){
+void Simout::makeCircle(cv::Mat &m){
 //	int ch  = m.channels();	
 	int nrows = m.rows;
 	int ncols = m.cols;

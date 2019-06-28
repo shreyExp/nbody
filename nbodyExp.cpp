@@ -4,7 +4,7 @@
 #include <string>
 #include "getini.h"
 #include <sstream>
-#include "videogen.h"
+#include "simout.h"
 #include "ProgressBar.hpp"
 using namespace arma; //To  use anmadillo objects
 using namespace std;
@@ -62,10 +62,18 @@ int main(int argc, char** argv){
 			progressBar.display();
 	}
 	cout<<"Iterating Complete.";
-	string fileName = ini.getVideoFileName();
+	string filename = ini.getVideoFileName();
 	int duration = ini.getVideoDuration();
-	videoGen(x, y, nbodies, iter, duration, fileName);
+//	videoGen(x, y, nbodies, iter, duration, fileName);
 //	displayer(x[0], y[0], x[1], y[1], iter, duration, fileName);
+	Simout vid;
+	vid.x = x;
+	vid.y = y;
+	vid.nbodies = nbodies;
+	vid.iter = iter;
+	vid.duration = duration;
+	vid.filename = filename;
+	vid.videoGen();
 }
 inline Col<double> acc(Col<double> R1, Col<double> R2, double m){
 	double G = 6.67408e-20;

@@ -5,7 +5,7 @@
 	"xprojection":[1,0,0],
 	"yprojection":[0,-1,0],
 	"videoduration": 120,
-	"videofilename": "myfile22.avi",
+	"videofilename": "newfile.avi",
 	"bodies":[
 			{
 				"mass": 1e26,
