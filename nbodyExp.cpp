@@ -33,11 +33,15 @@ int main(int argc, char** argv){
 
 	ini.getPositions(R);
 	ini.getVelocities(v);
-	y = new double*[nbodies];
-	x = new double*[nbodies];
-	for(int l = 0; l < nbodies; l++){
-		y[l] = new double[iter];
-		x[l] = new double[iter];
+	x = new double*[iter];
+	y = new double*[iter];
+	//x = new double*[nbodies];
+	//x = new double*[nbodies];
+	for(int l = 0; l < iter; l++){
+		x[l] = new double[nbodies];
+		y[l] = new double[nbodies];
+		//x[l] = new double[iter];
+		//x[l] = new double[iter];
 	}
 
 	ProgressBar progressBar(iter, 70, '#', '-');
@@ -54,8 +58,8 @@ int main(int argc, char** argv){
 			}
 			v[j] = v[j] + h*a[j];
 			R[j] = R[j] + h*v[j];
-			x[j][k] = dot(R[j], xa);
-			y[j][k] = dot(R[j], ya);
+			x[k][j] = dot(R[j], xa);
+			y[k][j] = dot(R[j], ya);
 		}
 		++progressBar;
 		if(k % 10 == 0)

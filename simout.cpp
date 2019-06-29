@@ -13,16 +13,16 @@ void Simout::videoGen(){
 	
 	
 	if (xmin < 0){
-		for(int i=0; i<nbodies; i++){
-			for(int j = 0; j < iter; j++){
+		for(int i=0; i<iter; i++){ //change here
+			for(int j = 0; j < nbodies; j++){
 				x[i][j] = x[i][j] - xmin;	
 			}
 		}
 	}
 
 	if (ymin < 0){
-		for(int i=0; i<nbodies; i++){
-			for(int j = 0; j < iter; j++){
+		for(int i=0; i<iter; i++){
+			for(int j = 0; j < nbodies; j++){
 				y[i][j] = y[i][j] - ymin;	
 			}
 		}
@@ -53,8 +53,8 @@ void Simout::videoGen(){
 	ProgressBar progressBar(iter/stepSize, 70, '=', '-');
 	for(int i = 0; i < iter; i = i + stepSize){
 		for(int j = 0; j < nbodies; j = j + 1){
-			k = x[j][i] * xscale + shiftx;		
-			l = y[j][i] * yscale + shifty;
+			k = x[i][j] * xscale + shiftx;		
+			l = y[i][j] * yscale + shifty;
 
 			body.copyTo(im(Rect(k,(1000 - l), body.cols, body.rows)));	
 		}
@@ -87,8 +87,8 @@ void Simout::minmax2d(double **x, int nbodies, int iter, double &m, double &ma){
 	double min, max;
 	min = x[0][0];
 	max = x[0][0];
-	for(int i = 0; i < nbodies; i++){
-		for(int j = 0; j < iter; j++){
+	for(int i = 0; i < iter; i++){
+		for(int j = 0; j < nbodies; j++){
 			if(x[i][j] < min)
 				min = x[i][j];
 			if(x[i][j] > max)
