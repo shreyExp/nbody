@@ -35,13 +35,9 @@ int main(int argc, char** argv){
 	ini.getVelocities(v);
 	x = new double*[iter];
 	y = new double*[iter];
-	//x = new double*[nbodies];
-	//x = new double*[nbodies];
 	for(int l = 0; l < iter; l++){
 		x[l] = new double[nbodies];
 		y[l] = new double[nbodies];
-		//x[l] = new double[iter];
-		//x[l] = new double[iter];
 	}
 
 	ProgressBar progressBar(iter, 70, '#', '-');
@@ -68,8 +64,6 @@ int main(int argc, char** argv){
 	cout<<"Iterating Complete.";
 	string filename = ini.getVideoFileName();
 	int duration = ini.getVideoDuration();
-//	videoGen(x, y, nbodies, iter, duration, fileName);
-//	displayer(x[0], y[0], x[1], y[1], iter, duration, fileName);
 	Simout vid;
 	vid.x = x;
 	vid.y = y;

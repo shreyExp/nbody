@@ -13,7 +13,7 @@ void Simout::videoGen(){
 	
 	
 	if (xmin < 0){
-		for(int i=0; i<iter; i++){ //change here
+		for(int i=0; i<iter; i++){ 
 			for(int j = 0; j < nbodies; j++){
 				x[i][j] = x[i][j] - xmin;	
 			}
@@ -83,7 +83,7 @@ void Simout::minmax(double *x, double &m, double &ma, int iter){
 //	cout<<"Maximum is "<<max<<endl;
 }
 
-void Simout::minmax2d(double **x, int nbodies, int iter, double &m, double &ma){
+void Simout::minmax2d(double **x, int iter, int nbodies, double &m, double &ma){
 	double min, max;
 	min = x[0][0];
 	max = x[0][0];
