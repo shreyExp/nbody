@@ -1,15 +1,36 @@
+//
 #include "simout.h"
-void Simout::videoGen(){
 
+void minmax(double *x, double &m, double &ma, int iter);
+void minmax2d(double **x, int iter, int nbodies, double &m, double &ma);
+void generateVideo(double **x, double **y, int iter, int nbodies, int duration, string filename);
+
+void generateVideo(double **x, double **y, int iter, int nbodies, int duration, string filename){
 	int imgDimension = 1000;
 	Size S(imgDimension, imgDimension);
 	cv::Mat im(imgDimension, imgDimension, CV_8UC1);
 	const double fps = 60;
 	const int stepSize = iter/(fps * duration);
-
+	cout<<"num bodies in the simout is "<<nbodies<<endl;
+	//for(int i = 0; i < 10; i++)
+	//	for(int j = 0; j < nbodies; j++)
+	//		cout<<"x is "<<x[i][j]<<endl;
 	double xmin, xmax, ymin, ymax;
-	minmax2d(x, nbodies, iter, xmin, xmax);
-	minmax2d(y, nbodies, iter, ymin, ymax);
+	minmax2d(x, iter, nbodies, xmin, xmax);
+	minmax2d(y, iter, nbodies, ymin, ymax);
+	cout<<"xmax is: "<<xmax<<"xmin: "<<xmin<<endl;
+	cout<<"ymax is: "<<ymax<<"ymin: "<<ymin<<endl;
+
+	//double maxout = 4.09992e+06;
+	//double minout = 0.500003;
+	//for(int i = 0; i < iter; i++)
+	//	for(int j = 0; j < nbodies; j++){
+	//		if (x[i][j] > maxout)
+	//			cout<<"Greater than Value of x["<<i<<"]["<<j<<"] = "<<x[i][j]<<endl;
+	//		if (x[i][j] < minout)
+	//			cout<<"Min than Value of x["<<i<<"]["<<j<<"] = "<<x[i][j]<<endl;
+	//	}
+
 	
 	
 	if (xmin < 0){
@@ -37,7 +58,7 @@ void Simout::videoGen(){
 	double xscale = simWidth/(max - min);
 	double yscale = simWidth/(max - min);
 	
-	VideoWriter vid(filename, CV_FOURCC('P','I','M','1'), fps, S, false);
+	VideoWriter vid(filename, cv::VideoWriter::fourcc('P','I','M','1'), fps, S, false);
 	int bodySizeInt;
 	bodySizeInt = bodySize;
 	cv::Mat body(bodySizeInt, bodySizeInt, CV_8UC1);
@@ -67,7 +88,7 @@ void Simout::videoGen(){
 	cout<<"\nOutput written!\nProgram finished"<<endl;
 	progressBar.done();
 }
-void Simout::minmax(double *x, double &m, double &ma, int iter){
+void minmax(double *x, double &m, double &ma, int iter){
 	double min, max;
 	min = x[0];
 	max = x[0];
@@ -83,24 +104,24 @@ void Simout::minmax(double *x, double &m, double &ma, int iter){
 //	cout<<"Maximum is "<<max<<endl;
 }
 
-void Simout::minmax2d(double **x, int iter, int nbodies, double &m, double &ma){
-	double min, max;
-	min = x[0][0];
-	max = x[0][0];
-	for(int i = 0; i < iter; i++){
+void minmax2d(double **x, int iter, int nbodies, double &m, double &ma){
+	double xmax = x[0][0];
+	double xmin = x[0][0];
+	for(int i = 0; i < iter; i++)
 		for(int j = 0; j < nbodies; j++){
-			if(x[i][j] < min)
-				min = x[i][j];
-			if(x[i][j] > max)
-				max = x[i][j];	
+			if(xmax < x[i][j]){
+				xmax = x[i][j];
+			}
+			if(xmin > x[i][j]){
+				xmin = x[i][j];
+			}
 		}
-	}
-	m = min;
-	ma = max;
-//	cout<<"Minimum is "<<min<<endl;
-//	cout<<"Maximum is "<<max<<endl;
+	m = xmin;
+	ma = xmax;
+	cout<<"Max is "<<ma<<endl;
+	cout<<"Min is "<<m<<endl;
 }
-void Simout::makeCircle(cv::Mat &m){
+void makeCircle(cv::Mat &m){
 //	int ch  = m.channels();	
 	int nrows = m.rows;
 	int ncols = m.cols;
