@@ -26,7 +26,7 @@ int main(int argc, char** argv){
 	Col<double> xa; 
 	ini.getXprojection(xa);// to be written
 	Col<double> ya; 
-	ini.getYprojection(ya);// to be written
+	ini.getYprojection(ya);// to be edited
 	ini.getMass(mass); //to be written
 	Col<double> *R;
 	Col<double> *v;
