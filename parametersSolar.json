@@ -9,6 +9,7 @@
 	"yprojection":[0,1,0],
 	"videoduration": 20,
 	"videofilename": "myfileSolarExp2.avi",
+	"cmflag": 1,
 	"bodies":[
 			{
 				"mass": 1.989e30,

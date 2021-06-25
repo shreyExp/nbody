@@ -30,10 +30,14 @@ int main(int argc, char** argv){
 	ini.getMass(mass); //to be written
 	Col<double> *R;
 	Col<double> *v;
+	Col<double> CM;
 	Col<double> a[nbodies];
 
 	ini.getPositions(R);
 	ini.getVelocities(v);
+	bool cmflag = 0;
+	if(ini.getCMFlag())
+		cmflag = 1;
 	x = new double*[iter];
 	y = new double*[iter];
 	for(int l = 0; l < iter; l++){
@@ -44,7 +48,15 @@ int main(int argc, char** argv){
 	ProgressBar progressBar(iter, 70, '#', '-');
 
 	cout<<"Iterating....."<<endl;
+	double totalMass = 0;
+	if(cmflag){
+		for(int i = 0; i < nbodies; i++)
+			totalMass += mass[i];
+	}
+
 	for(int k = 0; k < iter; k++){
+		if(cmflag)
+			CM<<0<<0<<0;
 		for(int j = 0; j < nbodies; j++){//This can be parallelized
 			a[j]<<0<<0<<0; //To stop accumulation : a should be new for new calculation
 			for(int i = 0; i < nbodies; i++){
@@ -55,10 +67,19 @@ int main(int argc, char** argv){
 			}
 			v[j] = v[j] + h*a[j];
 			R[j] = R[j] + h*v[j];
+			if(cmflag)
+				CM = CM + mass[j]*R[j];
 			x[k][j] = dot(R[j], xa);
 			y[k][j] = dot(R[j], ya);
 			//cout<<"x"<<"["<<k<<"]"<<"["<<j<<"]"<<"= "<<x[k][j]<<endl;
 			//cout<<"y"<<"["<<k<<"]"<<"["<<j<<"]"<<"= "<<y[k][j]<<endl;
+		}
+		if(cmflag){
+			CM = CM/totalMass;
+			for(int j = 0; j < nbodies; j++){
+				x[k][j] = x[k][j] - dot(CM, xa);
+				y[k][j] = y[k][j] - dot(CM, ya);
+			}
 		}
 		++progressBar;
 		if(k % 10 == 0)

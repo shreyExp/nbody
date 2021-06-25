@@ -6,6 +6,7 @@
 	"yprojection":[0,-1,0],
 	"videoduration": 120,
 	"videofilename": "newfile.avi",
+	"cmflag": 1,
 	"bodies":[
 			{
 				"mass": 1e26,

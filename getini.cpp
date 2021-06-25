@@ -18,7 +18,9 @@ int GetIni::getIteration(){
 double GetIni::getIterStepSize(){
 	return root["stepsize"].asDouble();
 }
-
+bool GetIni::getCMFlag(){
+	return root["cmflag"].asBool();
+}
 void GetIni::getPositions(Col<double> * &R){
 	R = new Col<double>[numbodies];
 	Value sub;

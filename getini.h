@@ -22,6 +22,7 @@ class GetIni{
 		int getVideoDuration();
 		string getVideoFileName();
 		void getMass(double * &);
+		bool getCMFlag();
 	private:
 		const char *filename;
 		Value root;
