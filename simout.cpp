@@ -1,5 +1,5 @@
-//
 #include "simout.h"
+#include <opencv2/videoio.hpp>
 
 void minmax(double *x, double &m, double &ma, int iter);
 void minmax2d(double **x, int iter, int nbodies, double &m, double &ma);
@@ -58,7 +58,7 @@ void generateVideo(double **x, double **y, int iter, int nbodies, int duration, 
 	double xscale = simWidth/(max - min);
 	double yscale = simWidth/(max - min);
 	
-	VideoWriter vid(filename, cv::VideoWriter::fourcc('P','I','M','1'), fps, S, false);
+	cv::VideoWriter vid(filename, cv::VideoWriter::fourcc('P','I','M','1'), fps, S, false);
 	int bodySizeInt;
 	bodySizeInt = bodySize;
 	cv::Mat body(bodySizeInt, bodySizeInt, CV_8UC1);

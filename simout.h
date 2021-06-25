@@ -5,6 +5,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <string>
+#include <opencv2/videoio.hpp>
 #include "ProgressBar.hpp"
 
 using namespace std;
