@@ -63,7 +63,7 @@ void generateVideo(double **x, double **y, int iter, int nbodies, int duration, 
 	bodySizeInt = bodySize;
 	cv::Mat body(bodySizeInt, bodySizeInt, CV_8UC1);
 	makeCircle(body);
-	im = Scalar(100);
+	im = Scalar(0);
 	int k,l;
 
 	double shiftx, shifty;
@@ -80,7 +80,7 @@ void generateVideo(double **x, double **y, int iter, int nbodies, int duration, 
 			body.copyTo(im(Rect(k,(1000 - l), body.cols, body.rows)));	
 		}
 		vid<<im;
-		im = Scalar(100);
+		im = Scalar(0);
 		++progressBar;
 		if(i % 10 == 0)
 			progressBar.display();
@@ -135,7 +135,7 @@ void makeCircle(cv::Mat &m){
 				if((pow((j - nrows/2), 2) + pow((i - nrows/2), 2)) <= pow((nrows/2), 2))
 					p[j] = 255;
 				else
-					p[j] = 100;
+					p[j] = 0;
 //				sfCol++;
 //				cout<<"i = "<<i<<"j = "<<j<<"P["<<i<<","<<j<<"]"<<p[j]<<endl;
 			}
